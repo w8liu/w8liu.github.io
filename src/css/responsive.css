@@ -1,0 +1,103 @@
+@media (max-width: 768px) {
+    .button-container {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+
+    .button {
+        padding: 12px 20px;
+        border-radius: 20px;
+    }
+
+    .collapse-button {
+        font-size: 1em;
+        border-radius: 20px;
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
+
+    #schedule-table {
+        width: 95%;
+        font-size: 14px;
+    }
+
+    #schedule-table th, #schedule-table td {
+        padding: 6px;
+    }
+
+    #schedule-table td {
+        height: auto;
+    }
+
+    .modal-content {
+        width: 90%;
+        margin: 20% auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .recent-requests-list {
+        max-height: 200px;
+    }
+    .request-item .request-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .button {
+        padding: 10px 15px;
+        border-radius: 28px;
+    }
+
+    .collapse-button {
+        font-size: 0.9em;
+        border-radius: 28px;
+    }
+
+    body {
+        padding: 20px;
+    }
+
+    header {
+        padding: 20px;
+    }
+
+    #schedule-table {
+        font-size: 12px;
+    }
+
+    #schedule-table th, #schedule-table td {
+        padding: 4px;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #222222;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #383838;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #686868;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}

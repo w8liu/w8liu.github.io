@@ -1,0 +1,198 @@
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 25px;
+    border-radius: var(--border-radius-large);
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s, background 0.5s;
+    background: var(--background-alt);
+    color: var(--text-emphasis);
+    font-size: 1.1em;
+    border: none;
+    cursor: pointer;
+}
+
+.button.pending-button {
+    background: #555;
+    color: #b0b0b0;
+}
+
+.button.primary-button {
+    background: linear-gradient(138deg, var(--primary-color), var(--primary-color-dark));
+    color: var(--text-on-primary);
+}
+
+.button.primary-button:hover {
+    background: linear-gradient(138deg, var(--primary-color-dark),var(--primary-color-dark) ); /* Slightly darker second stop */
+}
+
+.button.red-button {
+    background: linear-gradient(138deg, #c63636, #a61212);
+}
+.button.red-button:hover {
+    background: linear-gradient(138deg, #c03030, #690808);
+}
+.button.blue-button {
+    background: linear-gradient(138deg, #4a90e2, #165798);
+}
+.button.blue-button:hover {
+    background: linear-gradient(138deg, #2672bf, #08325b);
+}
+.button.green-button {
+    background: linear-gradient(138deg, #50e3c2, #2c973b);
+}
+.button.green-button:hover {
+    background: linear-gradient(138deg, #2c973b, #0d7158);
+}
+.collapse-button.seagreen-button {
+    background: linear-gradient(138deg, #3cb851, #21c83d);
+}
+.button.seagreen-button:hover {
+    background: linear-gradient(138deg, #19cb37, #089b21);
+}
+.button.purple-button {
+    background: linear-gradient(138deg, #9e3fc7, #712e8e);
+}
+.button.purple-button:hover {
+    background: linear-gradient(138deg, #712e8e, #5e3370);
+}
+.button.orange-button {
+    background: linear-gradient(138deg, #df7a3c, #cb5d19);
+}
+.button.orange-button:hover {
+    background: linear-gradient(138deg, #cb5d19, #cb5106);
+}
+
+.button .icon {
+    margin-right: 8px;
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+.collapse-button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.collapse-button {
+    padding: 15px 25px;
+    border: none;
+    border-radius: var(--border-radius-large);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 0;
+    width: 100%;
+    position: relative;
+    transition: background-color 0.3s, background 0.3s;
+    background: var(--background-alt);
+    color: var(--text-emphasis);
+    font-size: 1.1em;
+    cursor: pointer;
+    text-align: left;
+    padding-left: 25px;
+}
+
+.collapse-button.red-button {
+    background: linear-gradient(138deg, #c63636, #a61212);
+}
+.collapse-button.red-button:hover {
+    background: linear-gradient(138deg, #c03030, #690808);
+}
+.collapse-button.blue-button {
+    background: linear-gradient(138deg, #4a90e2, #165798);
+}
+.collapse-button.blue-button:hover {
+    background: linear-gradient(138deg, #2672bf, #08325b);
+}
+.collapse-button.green-button {
+    background: linear-gradient(138deg, #3cb851, #21c83d);
+}
+.collapse-button.green-button:hover {
+    background: linear-gradient(138deg, #19cb37, #089b21);
+}
+.collapse-button.seagreen-button {
+    background: linear-gradient(138deg, #50e3c2, #2c974b);
+}
+.collapse-button.seagreen-button:hover {
+    background: linear-gradient(138deg, #2c974b, #0d7158);
+}
+.collapse-button.purple-button {
+    background: linear-gradient(138deg, #9e3fc7, #712e8e);
+}
+.collapse-button.purple-button:hover {
+    background: linear-gradient(138deg, #712e8e, #5e3370);
+}
+.collapse-button.orange-button {
+    background: linear-gradient(138deg, #df7a3c, #cb5d19);
+}
+.collapse-button.orange-button:hover {
+    background: linear-gradient(138deg, #cb5d19, #cb5106);
+}
+
+.collapse-button::after {
+    content: '';
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg); /* Pointing down initially */
+    border: solid var(--text-emphasis);
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transition: transform 0.3s ease;
+}
+
+.collapse-content {
+    display: none;
+    padding: 5px 0;
+    margin: 0 5px 5px 5px;
+    text-align: center;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease-out; /* Smooth transitions */
+}
+
+.collapse-content a {
+    /* Inherit base .button styles */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: var(--border-radius-large);
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s, background 0.3s;
+    background: var(--background-alt);
+    color: var(--text-emphasis);
+    font-size: 1em;
+    margin: 10px 0;
+}
+
+.collapse-content.show {
+    display: block;
+    max-height: none;
+    opacity: 1;
+    padding: 10px 0;
+}
+
+.collapse-button.active::after {
+    transform: translateY(-50%) rotate(-135deg);
+}
+.collapse-button-container.active .collapse-button::after {
+    transform: translateY(-50%) rotate(-135deg);
+}
