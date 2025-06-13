@@ -3,19 +3,26 @@
 # Exit immediately if a command exits with a non-zero status
 set -e
 
-# Checkout to main branch
-git checkout main
+# Checkout to master branch
+git checkout master
 
 # Build the project
 npm run build
 
+# Serve the project locally in the background
+echo "npm run serve //testing locally"
+npm run serve &  # Run in the background
+
+# Wait for a moment to ensure the server starts
+sleep 5
+
 # Ask for the commit message for the first commit
-read -p "Enter commit message for main branch: " commit_message
+read -p "Enter commit message for master branch: " commit_message
 
 # Stage changes and commit
 git add .
 git commit -m "$commit_message"
-git push origin main
+git push origin master
 
 # Prepare for deployment
 mkdir -p ../temp_gh_pages
@@ -45,5 +52,5 @@ fi
 # Clean up temporary files
 rm -rf ../temp_gh_pages
 
-# Checkout back to main branch
-git checkout main
+# Checkout back to master branch
+git checkout master
