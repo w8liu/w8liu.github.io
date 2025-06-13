@@ -14,19 +14,20 @@ echo "npm run serve //testing locally"
 npm run serve &  # Run in the background
 
 # Wait for a moment to ensure the server starts
-sleep 5
+sleep 2.8
 
 # Ask for the commit message for the first commit
 read -p "Enter commit message for master branch: " commit_message
+
+# Prepare for deployment
+mkdir -p ../temp_gh_pages
+cp -r dist/* ../temp_gh_pages/
+rm -rf dist/
 
 # Stage changes and commit
 git add .
 git commit -m "$commit_message"
 git push origin master
-
-# Prepare for deployment
-mkdir -p ../temp_gh_pages
-cp -r dist/* ../temp_gh_pages/
 
 # Checkout to gh-pages branch
 git checkout gh-pages
