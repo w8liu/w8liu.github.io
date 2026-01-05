@@ -9,6 +9,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, './'), // Alias for root directory
       '@ui': path.resolve(__dirname, './ui'),
       '@utils': path.resolve(__dirname, './utils'),
+      '@pages': path.resolve(__dirname, './pages'),
       '@src': path.resolve(__dirname, './src'),
       '@css': path.resolve(__dirname, './src/css'),
     },

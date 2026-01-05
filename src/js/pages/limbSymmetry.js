@@ -20,10 +20,13 @@ function attachListeners() {
         input.addEventListener('input', calculateAll);
         
         // Track manual edits
-        input.addEventListener('input', (e) => {
-            e.target.dataset.manual = 'true';
-            handleDateLinking(e.target);
-        });
+        if (!input.dataset.hasManualListener) {
+            input.addEventListener('input', (e) => {
+                e.target.dataset.manual = 'true';
+                handleDateLinking(e.target);
+            });
+            input.dataset.hasManualListener = 'true';
+        }
     });
 
     trialInputs.forEach(input => {
@@ -133,6 +136,7 @@ function setVal(calc, value) {
         // If value is 0 or invalid, set to empty string
         if (isFinite(value) && !isNaN(value) && value !== 0) {
             numericValue = value;
+            checkValue = value; // Update checkValue for highlighting logic
             // Check if it's a percentage (contains 'sym' or 'ratio')
             if (calc.includes('sym') || calc.includes('ratio') || calc.includes('tobw')) {
                  // For ratios/symmetry, user might want % or decimal. 
