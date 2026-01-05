@@ -24,6 +24,16 @@ export class CollapsibleSections {
                     // Call toggleCollapse with the dynamically retrieved ID
                     toggleCollapse(button, targetId);
                 });
+
+                // Check if this section should be open by default
+                if (button.dataset.defaultOpen === 'true') {
+                    // We need to make sure the target element exists before trying to toggle it.
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        // Call toggleCollapse to open it. This assumes the initial state is closed.
+                        toggleCollapse(button, targetId);
+                    }
+                }
             } else {
                 // Optional: Warn if a button has the class but an empty data-target
                 console.warn(`Button with ID "${button.id || 'N/A'}" has an empty data-target attribute.`);

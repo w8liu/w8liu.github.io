@@ -16,7 +16,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: path.resolve(__dirname, 'index.html')
+        main: path.resolve(__dirname, 'index.html'),
+        limbSymmetry: path.resolve(__dirname, 'limbSymmetry.html'),
       },
     },
   },

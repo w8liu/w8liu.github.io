@@ -27,3 +27,57 @@ export function toggleCollapse(button, targetId) {
     button.setAttribute('aria-expanded', isExpanded);
     targetElement.setAttribute('aria-hidden', !isExpanded);
 }
+
+/**
+ * Escapes HTML special characters in a string.
+ * @param {*} unsafe The input value. If not a string, it's returned as is.
+ * @returns {string} The escaped string or the original value if not a string.
+ */
+export function escapeHtml(unsafe) {
+    if (typeof unsafe !== 'string') return unsafe; // Return non-strings as is
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }
+
+ /**
+  * Creates a debounced function that delays invoking func until after wait milliseconds
+  * have elapsed since the last time the debounced function was invoked.
+  * @param {Function} func The function to debounce.
+  * @param {number} wait The number of milliseconds to delay.
+  * @returns {Function} Returns the new debounced function.
+  */
+ export function debounce(func, wait) {
+   let timeout;
+   return function executedFunction(...args) {
+     // The function to be executed after the debounce time
+     const later = () => {
+       clearTimeout(timeout);
+       // Call the original function with the correct 'this' context and arguments
+       func.apply(this, args);
+     };
+     // Clear the previous timeout timer
+     clearTimeout(timeout);
+     // Set a new timeout timer
+     timeout = setTimeout(later, wait);
+   };
+ }
+
+ /**
+  * Sets up an event listener for a toggle switch (e.g., a checkbox).
+  * @param {HTMLInputElement} switchElement The switch input element.
+  * @param {Function} onStateChangeCallback A callback function that is called when the switch state changes.
+  *                                         It receives the new checked state (boolean) as an argument.
+  */
+ export function setupToggleSwitch(switchElement, onStateChangeCallback) {
+    if (!switchElement || typeof switchElement.addEventListener !== 'function') {
+        console.error("Invalid switch element provided for setupToggleSwitch.");
+        return;
+    }
+    switchElement.addEventListener('change', () => {
+        onStateChangeCallback(switchElement.checked);
+    });
+ }
