@@ -275,17 +275,20 @@ canvas {
         --paper-text: black;
         --input-color: black;
         --calc-color: black;
-        --graph-bg: #f9f9f9;
+        --graph-bg: white;
         --focus-bg: transparent;
     }
 
-    @page { size: letter; margin: 0; }
+    @page { size: letter portrait; margin: 0; }
     
-    body {
+    html, body {
+        width: 8.5in;
+        height: 11in;
         background: none;
         margin: 0;
         padding: 0;
         display: block;
+        overflow: hidden;
     }
 
     header, footer, .no-print, .collapse-button-container {
@@ -296,8 +299,8 @@ canvas {
         box-shadow: none;
         margin: 0;
         width: 100%;
-        max-width: 100%;
-        padding: 0.5in;
+        max-width: 8.5in;
+        padding: 0.25in;
         border: none;
         transform: none;
     }
@@ -336,6 +339,10 @@ canvas {
     /* Hide trial inputs and add button in print view */
     .trial-inputs {
         display: none !important;
+    }
+
+    .graph-container {
+        height: 160px;
     }
 }
 
