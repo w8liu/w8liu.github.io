@@ -21,6 +21,22 @@
     --text-emphasis: #ffffff;
 }
 
+/* Light Mode Overrides */
+body.light-mode {
+    --border: #ccc;
+    --header-bg: #e0e0e0;
+    --paper-bg: #ffffff;
+    --paper-text: #1a1a1a;
+    --input-color: #0056b3;
+    --calc-color: #000000;
+    --graph-bg: #ffffff;
+    --focus-bg: #f5f5f5;
+    --bg-body: #eef2f6;
+    --text-body: #333333;
+    --background-alt: #ffffff;
+    --text-emphasis: #333333;
+}
+
 body {
     background-color: var(--bg-body);
     color: var(--text-body);
@@ -41,6 +57,70 @@ header {
     width: 100%;
     max-width: var(--page-width);
     margin-bottom: 20px;
+}
+
+.header-controls {
+    display: flex;
+    gap: 10px;
+}
+
+/* Toggle Switch Styles */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 10px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #555;
+    transition: .4s;
+    border-radius: 22px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(18px);
+}
+
+.toggle-label {
+    font-size: 0.9rem;
+    color: var(--text-body);
+    font-weight: 600;
 }
 
 .logo {
@@ -267,6 +347,78 @@ canvas {
     height: 100%;
 }
 
+/* Print Optimization Helpers */
+.break-inside-avoid {
+    break-inside: avoid;
+}
+
+/* --- Print Configuration Panel --- */
+.print-config-panel {
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    background: var(--background-alt);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    z-index: 1000;
+    width: 260px;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: 1px solid var(--border-color-light);
+    display: none;
+    color: var(--text-body);
+}
+
+.print-config-panel.visible {
+    display: block;
+}
+
+.print-config-panel h3 {
+    margin-top: 0;
+    font-size: 1.1em;
+    border-bottom: 1px solid var(--border-color-light);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    color: var(--text-emphasis);
+}
+
+.config-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+}
+
+.config-item input {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.config-item label {
+    cursor: pointer;
+}
+
+/* --- Compact Mode Overrides --- */
+body.compact-mode .report-table td, 
+body.compact-mode .report-table th {
+    height: auto !important;
+    padding: 1px 4px !important;
+    font-size: 9pt !important;
+}
+
+body.compact-mode .graph-container {
+    height: 120px !important;
+}
+
+body.compact-mode .page-container {
+    padding: 0.15in !important;
+}
+
+body.compact-mode .no-border[style*="height"] {
+    height: 2px !important; /* Shrink spacers */
+}
+
 /* Print Overrides - Preserved Exactly */
 @media print {
     :root {
@@ -291,7 +443,7 @@ canvas {
         overflow: hidden;
     }
 
-    header, footer, .no-print, .collapse-button-container {
+    header, footer, .no-print, .collapse-button-container, .print-config-panel {
         display: none !important;
     }
 
@@ -343,6 +495,11 @@ canvas {
 
     .graph-container {
         height: 160px;
+    }
+
+    /* Prevent tables from splitting awkwardly */
+    tbody, .report-section {
+        break-inside: avoid;
     }
 }
 
