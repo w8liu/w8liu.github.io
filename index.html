@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/src/css/base.css">
     <link rel="stylesheet" href="/src/css/buttons.css">
     <link rel="stylesheet" href="/src/css/responsive.css">
+    <link rel="stylesheet" href="/src/css/toggleSwitch.css">
 
 </head>
 <body>
@@ -29,6 +30,13 @@
                 Demos
             </button>
             <div id="placeholder" class="collapse-content">
+                <div class="toggle-container" style="justify-content: center; margin: 10px 0;">
+                    <label class="switch theme-switch">
+                        <input type="checkbox" id="homeLightModeToggle">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="toggle-label" id="homeThemeLabel">Dark Mode</span>
+                </div>
                 <a href="limbSymmetry.html" class="button green-button">
                     <img src="/assets/formicon.svg" alt="Form Icon" class="icon">
                     Limb Symmetry Demo

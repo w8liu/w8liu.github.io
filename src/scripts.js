@@ -15,6 +15,9 @@ async function initializeApp() {
             collapsibleSections.initialize();
             console.log("collapsibleSections.js initialized");
         }
+        
+        // Initialize Theme Toggle for Homepage
+        setupThemeToggle('homeLightModeToggle', 'homeThemeLabel');
 
         console.log("Site loaded!");
 
@@ -31,3 +34,20 @@ async function initializeApp() {
 }
 
 document.addEventListener("DOMContentLoaded", initializeApp);
+
+// --- Shared UI Logic ---
+export function setupThemeToggle(toggleId, labelId) {
+    const toggle = document.getElementById(toggleId);
+    const label = document.getElementById(labelId);
+
+    if (toggle) {
+        const updateState = () => {
+            document.body.classList.toggle('light-mode', toggle.checked);
+            if (label) label.textContent = toggle.checked ? 'Light Mode' : 'Dark Mode';
+        };
+        
+        toggle.addEventListener('change', updateState);
+        // Initialize state based on default check or local storage if added later
+        updateState();
+    }
+}

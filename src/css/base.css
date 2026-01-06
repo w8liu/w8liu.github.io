@@ -17,6 +17,39 @@
     --border-radius: 8px;
     --border-radius-large: 16px;
     --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    /* Print / Report Defaults (Dark Mode) */
+    --paper-bg: #1e1e1e;
+    --paper-text: #e0e0e0;
+    --input-color: #90caf9;
+    --calc-color: #ffffff;
+    --graph-bg: #2d2d2d;
+    --focus-bg: #333;
+    --header-bg: #999;
+}
+
+/* Light Mode Overrides */
+body.light-mode {
+    --background-color: #eef2f6;
+    --text-primary: #333333;
+    --text-secondary: #555555;
+    --background-alt: #ffffff;
+    --text-emphasis: #333333;
+    --border-color: #ccc;
+    --border-color-light: #ddd;
+
+    /* Report Light Mode */
+    --paper-bg: #ffffff;
+    --paper-text: #1a1a1a;
+    --input-color: #0056b3;
+    --calc-color: #000000;
+    --graph-bg: #ffffff;
+    --focus-bg: #f5f5f5;
+    --header-bg: #e0e0e0;
+}
+
+body.light-mode .logo {
+    filter: invert(1);
 }
 
 *,
@@ -76,6 +109,20 @@ header {
     align-items: center;
     padding: 20px;
     text-align: center;
+}
+
+/* Alternative Header for Subpages */
+header.subpage-header {
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 8.5in;
+    width: 100%;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .logo {

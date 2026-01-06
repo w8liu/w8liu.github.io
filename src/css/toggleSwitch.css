@@ -1,3 +1,9 @@
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .color-toggle-container {
     display: flex;
     align-items: center;
@@ -11,6 +17,12 @@
 .toggle-label {
     font-size: 0.9em;
     color: var(--text-secondary, #555);
+}
+
+@media (max-width: 600px) {
+    .toggle-label {
+        display: none;
+    }
 }
 
 .switch {
@@ -66,4 +78,18 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+.switch.theme-switch .slider {
+    background-color: #555;
+    background-image: url('/assets/moon.svg');
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+    background-size: 16px;
+}
+
+.switch.theme-switch input:checked + .slider {
+    background-color: var(--primary-color, #2196F3);
+    background-image: url('/assets/sun.svg');
+    background-position: left 6px center;
 }

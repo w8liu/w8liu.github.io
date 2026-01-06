@@ -1,126 +1,20 @@
 :root {
     --page-width: 8.5in;
+    --page-height: 11in;
     
-    /* Screen Mode (Dark) */
+    /* Local Overrides */
     --border: #444;
-    --header-bg: #999;
-    --paper-bg: #1e1e1e;
-    --paper-text: #e0e0e0;
-    --input-color: #90caf9;
-    --calc-color: #ffffff;
-    --graph-bg: #2d2d2d;
-    --focus-bg: #333;
-
-    /* Site Theme */
-    --bg-body: #121212;
-    --text-body: #e0e0e0;
-
-    /* Variables for buttons.css compatibility */
-    --border-radius-large: 16px;
-    --background-alt: #2c2c2c;
-    --text-emphasis: #ffffff;
 }
 
-/* Light Mode Overrides */
-body.light-mode {
-    --border: #ccc;
-    --header-bg: #e0e0e0;
-    --paper-bg: #ffffff;
-    --paper-text: #1a1a1a;
-    --input-color: #0056b3;
-    --calc-color: #000000;
-    --graph-bg: #ffffff;
-    --focus-bg: #f5f5f5;
-    --bg-body: #eef2f6;
-    --text-body: #333333;
-    --background-alt: #ffffff;
-    --text-emphasis: #333333;
+html, body {
+    height: auto;
+    min-height: 100vh;
 }
 
 body {
-    background-color: var(--bg-body);
-    color: var(--text-body);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-/* Header Styles */
-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: var(--page-width);
-    margin-bottom: 20px;
-}
-
-.header-controls {
-    display: flex;
-    gap: 10px;
-}
-
-/* Toggle Switch Styles */
-.toggle-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-right: 10px;
-}
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 22px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #555;
-    transition: .4s;
-    border-radius: 22px;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-}
-
-input:checked + .slider {
-    background-color: var(--primary-color);
-}
-
-input:checked + .slider:before {
-    transform: translateX(18px);
-}
-
-.toggle-label {
-    font-size: 0.9rem;
-    color: var(--text-body);
-    font-weight: 600;
 }
 
 .logo {
@@ -133,6 +27,9 @@ input:checked + .slider:before {
     margin-bottom: 5px;
     color: var(--paper-text);
     font-size: 14pt;
+    background: none;
+    -webkit-text-fill-color: initial;
+    background-clip: border-box;
 }
 
 .table-logo {
@@ -143,23 +40,18 @@ input:checked + .slider:before {
 
 .page-container {
     width: var(--page-width);
-    min-height: var(--page-height);
+    min-height: auto;
     background: var(--paper-bg);
     color: var(--paper-text);
     padding: 0.25in;
     box-sizing: border-box;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    margin-bottom: 2in;
-    
-    /* Desktop Scaling */
-    transform: scale(1.15);
-    transform-origin: top center;
+    margin-bottom: 40px;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 1050px) {
     .page-container {
-        transform: none; /* Remove scaling on smaller screens */
         max-width: 100%;
         overflow-x: auto; /* Allow scrolling if screen is very narrow */
     }
@@ -167,7 +59,6 @@ input:checked + .slider:before {
     header {
         flex-direction: column;
         gap: 15px;
-        text-align: center;
     }
 }
 
@@ -179,6 +70,11 @@ table.report-table {
     font-size: 10pt; /* Increased for UI readability */
     font-family: Arial, sans-serif;
     color: var(--paper-text);
+}
+
+/* Ensure Header Repeats */
+thead {
+    display: table-header-group;
 }
 
 /* Column Widths */
@@ -399,27 +295,6 @@ canvas {
     cursor: pointer;
 }
 
-/* --- Compact Mode Overrides --- */
-body.compact-mode .report-table td, 
-body.compact-mode .report-table th {
-    height: auto !important;
-    padding: 1px 4px !important;
-    font-size: 9pt !important;
-}
-
-body.compact-mode .graph-container {
-    height: 120px !important;
-}
-
-body.compact-mode .page-container {
-    padding: 0.15in !important;
-}
-
-body.compact-mode .no-border[style*="height"] {
-    height: 2px !important; /* Shrink spacers */
-}
-
-/* Print Overrides - Preserved Exactly */
 @media print {
     :root {
         --border: #000;
@@ -435,12 +310,12 @@ body.compact-mode .no-border[style*="height"] {
     
     html, body {
         width: 8.5in;
-        height: 11in;
+        height: auto;
         background: none;
         margin: 0;
         padding: 0;
         display: block;
-        overflow: hidden;
+        overflow: visible;
     }
 
     header, footer, .no-print, .collapse-button-container, .print-config-panel {
@@ -451,10 +326,9 @@ body.compact-mode .no-border[style*="height"] {
         box-shadow: none;
         margin: 0;
         width: 100%;
-        max-width: 8.5in;
+        max-width: 100%;
         padding: 0.25in;
         border: none;
-        transform: none;
     }
 
     /* Enforce original small sizes for print */
@@ -494,22 +368,22 @@ body.compact-mode .no-border[style*="height"] {
     }
 
     .graph-container {
-        height: 160px;
+        height: 150px;
     }
 
     /* Prevent tables from splitting awkwardly */
     tbody, .report-section {
+        break-inside: auto;
+    }
+    
+    /* Ensure rows don't split, but sections can */
+    tr {
         break-inside: avoid;
+        page-break-inside: avoid;
     }
 }
 
 /* Footer Styles */
 footer {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    text-align: center;
     width: 100%;
 }
