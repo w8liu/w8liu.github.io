@@ -7,27 +7,26 @@
     
     <link rel="icon" href="./assets/logo.png" type="image/png">
 
-    <!-- Report Template Styling -->
-  <script type="module" crossorigin src="./assets/limbSymmetry-BRAMo4K0.js"></script>
-  <link rel="modulepreload" crossorigin href="./assets/utils-DzuRImNT.js">
-  <link rel="stylesheet" crossorigin href="./assets/utils-BRAtFBaM.css">
-  <link rel="stylesheet" crossorigin href="./assets/limbSymmetry-BvQA6dlf.css">
+  <script type="module" crossorigin src="./assets/limbSymmetry-D5taHTty.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/utils-Dnk4PiOV.js">
+  <link rel="stylesheet" crossorigin href="./assets/utils-D2hamNqz.css">
+  <link rel="stylesheet" crossorigin href="./assets/limbSymmetry-DZN6W_O8.css">
 </head>
 <body>
-    <header>
+    <header class="subpage-header">
         <a href="index.html">
             <img src="./assets/logo.svg" alt="Primary Logo" class="logo">
         </a>
         <div class="header-controls">
             <div class="toggle-container">
-                <label class="switch">
+                <label class="switch theme-switch">
                     <input type="checkbox" id="lightModeToggle">
-                    <span class="slider"></span>
+                    <span class="slider round"></span>
                 </label>
-                <span class="toggle-label">Light Mode</span>
+                <span class="toggle-label" id="themeLabel">Dark Mode</span>
             </div>
-            <button id="toggleConfigBtn" class="button blue-button">Customize Report</button>
-            <button onclick="window.print()" class="button green-button">Print Report</button>
+            <button id="toggleConfigBtn" class="button blue-button">Customize</button>
+            <button id="printBtn" class="button green-button">Print</button>
         </div>
         
         <!-- Print Configuration Panel -->
@@ -35,10 +34,6 @@
             <h3>Report Sections</h3>
             <div id="configCheckboxes"></div>
             <hr style="border: 0; border-top: 1px solid var(--border-color-light); margin: 10px 0;">
-            <div class="config-item">
-                <input type="checkbox" id="compactModeToggle">
-                <label for="compactModeToggle" style="font-weight:bold; color: var(--primary-color);">Compact Mode (Save Paper)</label>
-            </div>
         </div>
     </header>
 
@@ -53,293 +48,8 @@
                 <col class="c5">
                 <col class="c6">
             </colgroup>
-            <tbody data-section="Patient Info">
-                <!-- Header Section -->
-                <tr>
-                    <td class="bold no-right-border">Name</td>
-                    <td colspan="2" class="no-left-border"><input type="text" class="data-input" data-field="patient_name"></td>
-                    <td class="no-left-border no-right-border"></td>
-                    <td></td>
-                    <td rowspan="3" class="text-center valign-top">
-                        <img src="./assets/positive_pt.jpg" alt="Logo" class="table-logo">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="bold no-right-border">Involved Limb</td>
-                    <td colspan="2" class="no-left-border"><input type="text" class="data-input" data-field="involved_limb"></td>
-                    <td class="bold no-right-border">SX Date</td>
-                    <td class="no-left-border"><input type="text" class="data-input" data-field="sx_date"></td>
-                </tr>
-                <tr>
-                    <td class="bold no-right-border">SX Details</td>
-                    <td colspan="2" class="no-left-border"><input type="text" class="data-input" data-field="sx_details"></td>
-                    <td class="bold no-right-border">Months Post Op</td>
-                    <td class="no-left-border"><input type="text" class="data-input" data-field="months_postop"></td>
-                </tr>
-            </tbody>
-            <tbody data-section="Tindeq Header">
-                <!-- Spacer -->
-                <tr><td colspan="6" class="no-border" style="height: 10px;"></td></tr>
-
-                <!-- Tindeq Section Header -->
-                <tr>
-                    <td colspan="6" class="bg-header text-center bold">Lower Extremity Isometric Muscle Strength Testing – Tindeq</td>
-                </tr>
-                <tr><td colspan="6" class="no-border" style="height: 5px;"></td></tr>
-            </tbody>
-            <tbody data-section="Tindeq Graphs">
-                <!-- Graphs -->
-                <tr>
-                    <td colspan="3" class="no-border">
-                        <div class="graph-container" data-left-group="l_ham" data-right-group="r_ham">
-                            <div class="graph-title">Peak Isometric Hamstring Strength by Trial</div>
-                            <div class="graph-key">
-                                <span><span class="key-dot" style="background:#36A2EB"></span>Left Knee Flexion</span>
-                                <span><span class="key-dot" style="background:#999999"></span>Right Knee Flexion</span>
-                            </div>
-                            <div class="graph-canvas-wrapper"><canvas id="graph1"></canvas></div>
-                            <div class="trial-inputs" id="ham-trials">
-                                <div class="trial-group" data-trial-group="l_ham">
-                                    <span>L:</span>
-                                    <input type="number" class="trial-input" data-trial="l_ham" data-index="0"><input type="number" class="trial-input" data-trial="l_ham" data-index="1"><input type="number" class="trial-input" data-trial="l_ham" data-index="2">
-                                </div>
-                                <div class="trial-group" data-trial-group="r_ham">
-                                    <span>R:</span>
-                                    <input type="number" class="trial-input" data-trial="r_ham" data-index="0"><input type="number" class="trial-input" data-trial="r_ham" data-index="1"><input type="number" class="trial-input" data-trial="r_ham" data-index="2">
-                                </div>
-                                <button class="button button-small green-button" onclick="addTrial('ham')">+</button>
-                                <button class="button button-small red-button" onclick="deleteTrial('ham')">&times;</button>
-                            </div>
-                        </div>
-                    </td>
-                    <td colspan="3" class="no-border">
-                        <div class="graph-container" data-left-group="l_quad" data-right-group="r_quad">
-                            <div class="graph-title">Peak Isometric Quadriceps Strength by Trial</div>
-                            <div class="graph-key">
-                                <span><span class="key-dot" style="background:#36A2EB"></span>Left Knee Extension</span>
-                                <span><span class="key-dot" style="background:#999999"></span>Right Knee Extension</span>
-                            </div>
-                            <div class="graph-canvas-wrapper"><canvas id="graph2"></canvas></div>
-                            <div class="trial-inputs" id="quad-trials">
-                                <div class="trial-group" data-trial-group="l_quad">
-                                    <span>L:</span>
-                                    <input type="number" class="trial-input" data-trial="l_quad" data-index="0"><input type="number" class="trial-input" data-trial="l_quad" data-index="1"><input type="number" class="trial-input" data-trial="l_quad" data-index="2">
-                                </div>
-                                <div class="trial-group" data-trial-group="r_quad">
-                                    <span>R:</span>
-                                    <input type="number" class="trial-input" data-trial="r_quad" data-index="0"><input type="number" class="trial-input" data-trial="r_quad" data-index="1"><input type="number" class="trial-input" data-trial="r_quad" data-index="2">
-                                </div>
-                                <button class="button button-small green-button" onclick="addTrial('quad')">+</button>
-                                <button class="button button-small red-button" onclick="deleteTrial('quad')">&times;</button>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr><td colspan="6" class="no-border" style="height: 5px;"></td></tr>
-            </tbody>
-            <tbody data-section="Tindeq Data">
-                <!-- Tindeq Data -->
-                <tr>
-                    <td colspan="2" class="tiny-text">Test Date</td>
-                    <td><input type="text" class="data-input tiny-text" data-field="tindeq_date" data-link-target="tindeq_date_2"></td>
-                    <td colspan="2" class="tiny-text">Test Date</td>
-                    <td><input type="text" class="data-input tiny-text" data-field="tindeq_date_2"></td>
-                </tr>
-                <tr>
-                    <td colspan="2">Peak Hamstring Limb Symmetry (R:L)</td>
-                    <td><input type="text" class="data-input calc-output" data-calc-mode="symmetry" data-calc-target="ham"><span class="print-asterisk">*</span></td>
-                    <td colspan="2">Peak Quadricep Limb Symmetry (R:L)</td>
-                    <td><input type="text" class="data-input calc-output" data-calc-mode="symmetry" data-calc-target="quad"><span class="print-asterisk">*</span></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="tiny-text">Left Average Mean (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="l_hamavg"><span class="print-asterisk">*</span></td>
-                    <td colspan="2" class="tiny-text">Left Average Mean (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="l_quadavg"><span class="print-asterisk">*</span></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="tiny-text">Right Average Mean (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="r_hamavg"><span class="print-asterisk">*</span></td>
-                    <td colspan="2" class="tiny-text">Right Average Mean (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="r_quadavg"><span class="print-asterisk">*</span></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="tiny-text">Left Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="l_hammax"><span class="print-asterisk">*</span></td>
-                    <td colspan="2" class="tiny-text">Left Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="l_quadmax"><span class="print-asterisk">*</span></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="tiny-text">Right Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="r_hammax"><span class="print-asterisk">*</span></td>
-                    <td colspan="2" class="tiny-text">Right Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="r_quadmax"><span class="print-asterisk">*</span></td>
-                </tr>
-                <tr>
-                    <td colspan="2"></td>
-                    <td></td>
-                    <td colspan="2" class="tiny-text text-right">(LEFT) Peak Hamstring:Quad Ratio</td>
-                    <td><input type="text" class="data-input calc-output tiny-text" data-calc-mode="ratio" data-calc-num="l_hammax" data-calc-denom="l_quadmax"><span class="print-asterisk">*</span></td>
-                </tr>
-                <tr>
-                    <td colspan="2"></td>
-                    <td></td>
-                    <td colspan="2" class="tiny-text text-right">(RIGHT) Peak Hamstring:Quad Ratio</td>
-                    <td><input type="text" class="data-input calc-output tiny-text" data-calc-mode="ratio" data-calc-num="r_hammax" data-calc-denom="r_quadmax"><span class="print-asterisk">*</span></td>
-                </tr>
-            </tbody>
-            <tbody data-section="ForceFrame Header">
-                <!-- Spacer -->
-                <tr><td colspan="6" class="no-border" style="height: 10px;"></td></tr>
-
-                <!-- ForceFrame Section Header -->
-                <tr>
-                    <td colspan="6" class="bg-header text-center bold">Lower Extremity Isometric Muscle Strength Testing – ForceFrame</td>
-                </tr>
-                <tr><td colspan="6" class="no-border" style="height: 5px;"></td></tr>
-            </tbody>
-            <tbody data-section="Hip Rotation">
-                <!-- ForceFrame Data -->
-                <tr>
-                    <td colspan="2" class="tiny-text">Test Date:</td>
-                    <td><input type="text" class="data-input tiny-text" data-field="forcefram_date" data-link-target="forcefram_date_2"></td>
-                    <td colspan="2" class="tiny-text">Test Date:</td>
-                    <td><input type="text" class="data-input tiny-text" data-field="forcefram_date_2"></td>
-                </tr>
-                
-                <!-- Hip Rotation -->
-                <tr>
-                    <td colspan="2">
-                        Peak Hip External Rotation Symmetry (R:L)<br>
-                        <span class="tiny-text italic">(Prone 90/90 from the ankle)</span>
-                    </td>
-                    <td><input type="text" class="data-input calc-output" data-calc-mode="symmetry" data-calc-target="hiper"><span class="print-asterisk">*</span></td>
-                    <td colspan="2">
-                        Peak Hip Internal Rotation Symmetry (R:L)<br>
-                        <span class="tiny-text italic">(Prone 90/90 from the ankle)</span>
-                    </td>
-                    <td><input type="text" class="data-input calc-output" data-calc-mode="symmetry" data-calc-target="hipir"><span class="print-asterisk">*</span></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="tiny-text">Left Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="l_hipermax"></td>
-                    <td colspan="2" class="tiny-text">Left Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="l_hipirmax"></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="tiny-text">Right Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="r_hipermax"></td>
-                    <td colspan="2" class="tiny-text">Right Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="r_hipirmax"></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="tiny-text text-right">(LEFT) Ext Rot to Body Weight (kg) Ratio (>0.2):</td>
-                    <td><input type="text" class="data-input calc-output tiny-text" data-calc="l_hipertobw"><span class="print-asterisk">*</span></td>
-                    <td colspan="3"></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="tiny-text text-right">(RIGHT) Ext Rot to Body Weight (kg) Ratio (>0.2):</td>
-                    <td><input type="text" class="data-input calc-output tiny-text" data-calc="r_hipertobw"><span class="print-asterisk">*</span></td>
-                    <td colspan="3"></td>
-                </tr>
-                <tr><td colspan="6" class="no-border" style="height: 5px;"></td></tr>
-            </tbody>
-            <tbody data-section="Hip Ab/Adduction">
-                <!-- Hip Ab/Adduction -->
-                <tr>
-                    <td colspan="2">
-                        Peak Hip Abduction Symmetry (R:L)<br>
-                        <span class="tiny-text italic">(Supine, straight leg from the ankle)</span>
-                    </td>
-                    <td><input type="text" class="data-input calc-output" data-calc-mode="symmetry" data-calc-target="hipab"><span class="print-asterisk">*</span></td>
-                    <td colspan="2">
-                        Peak Hip Adduction Symmetry (R:L)<br>
-                        <span class="tiny-text italic">(Supine, straight leg from the ankle)</span>
-                    </td>
-                    <td><input type="text" class="data-input calc-output" data-calc-mode="symmetry" data-calc-target="hipad"><span class="print-asterisk">*</span></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="tiny-text">Left Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="l_hipabmax"></td>
-                    <td colspan="2" class="tiny-text">Left Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="l_hipadmax"></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="tiny-text">Right Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="r_hipabmax"></td>
-                    <td colspan="2" class="tiny-text">Right Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="r_hipadmax"></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="tiny-text text-right">(LEFT) Glute Med to Body Weight (kg) Ratio (>0.33):</td>
-                    <td><input type="text" class="data-input calc-output tiny-text" data-calc="l_glutemtobw"><span class="print-asterisk">*</span></td>
-                    <td colspan="3"></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="tiny-text text-right">(RIGHT) Glute Med to Body Weight (kg) Ratio (>0.33):</td>
-                    <td><input type="text" class="data-input calc-output tiny-text" data-calc="r_glutemtobw"><span class="print-asterisk">*</span></td>
-                    <td colspan="3"></td>
-                </tr>
-                <tr><td colspan="6" class="no-border" style="height: 5px;"></td></tr>
-            </tbody>
-            <tbody data-section="Hip Abduction 60">
-                <!-- Hip Abduction 60 -->
-                <tr>
-                    <td colspan="2">Peak Hip Abduction <b>60</b> Symmetry (R:L)</td>
-                    <td><input type="text" class="data-input calc-output" data-calc-mode="symmetry" data-calc-target="hipab60"><span class="print-asterisk">*</span></td>
-                    <td colspan="2">Peak Hip Adduction <b>60</b> Symmetry (R:L)</td>
-                    <td><input type="text" class="data-input calc-output" data-calc-mode="symmetry" data-calc-target="hipad60"><span class="print-asterisk">*</span></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="tiny-text">Left Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="l_hipab60max"></td>
-                    <td colspan="2" class="tiny-text">Left Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="l_hipad60max"></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="tiny-text">Right Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="r_hipab60max"></td>
-                    <td colspan="2" class="tiny-text">Right Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="r_hipad60max"></td>
-                </tr>
-                <tr><td colspan="6" class="no-border" style="height: 5px;"></td></tr>
-            </tbody>
-            <tbody data-section="Extension / Plantarflexion">
-                <!-- Extension / Plantarflexion -->
-                <tr>
-                    <td colspan="2">Peak Hip Extension Symmetry (R:L)</td>
-                    <td><input type="text" class="data-input calc-output" data-calc-mode="symmetry" data-calc-target="hipex"><span class="print-asterisk">*</span></td>
-                    <td colspan="2">
-                        Peak Plantarflexion Symmetry (R:L)<br>
-                        <span class="tiny-text italic">(Seated, 90/90 knee flexion)</span>
-                    </td>
-                    <td><input type="text" class="data-input calc-output" data-calc-mode="symmetry" data-calc-target="plantarf"><span class="print-asterisk">*</span></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="tiny-text">Left Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="l_hipexmax"></td>
-                    <td colspan="2" class="tiny-text">Left Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="l_plantarfmax"></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="tiny-text">Right Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="r_hipexmax"></td>
-                    <td colspan="2" class="tiny-text">Right Peak (Kg)</td>
-                    <td><input type="text" class="data-input tiny-text" data-group="r_plantarfmax"></td>
-                </tr>
-            </tbody>
-            <tbody data-section="Comments">
-                <!-- Comments -->
-                <tr><td colspan="6" class="no-border" style="height: 10px;"></td></tr>
-                <tr>
-                    <td colspan="6" class="no-border">Tester Comments: <span class="tiny-text italic" style="float:right;">asterisk (*) indicates manual entry/override</span></td>
-                </tr>
-                <tr>
-                    <td colspan="6" style="height: 50px;">
-                        <textarea class="data-input" data-field="tester_comments"></textarea>
-                    </td>
-                </tr>
-            </tbody>
+            <!-- Content Generated via JS -->
+            <tbody id="reportTableBody"></tbody>
         </table>
     </div>
 
